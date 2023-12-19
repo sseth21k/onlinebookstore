@@ -20,8 +20,6 @@
 name: Build and deploy JAR app to Azure Web App
 
 env:
-  # Use an environment variable instead
-  # AZURE_WEBAPP_NAME: tomcat-bookstore-test    # set this to the name of your Azure Web App
   JAVA_VERSION: '11'                  # set this to the Java version to use
   DISTRIBUTION: microsoft             # set this to the Java distribution
 
@@ -75,6 +73,8 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
+          # AZURE_WEBAPP_NAME needs to be created in the Github repo under Settings > Environments.
+          # Create a new Environment, then create a new environment variable with the name 'AZURE_WEBAPP_NAME' and the webapp name as the value.
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: '*.war'
