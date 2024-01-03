@@ -3,6 +3,7 @@ package com.bittercode.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Set;
 
 class DatabaseConfig {
 
@@ -17,6 +18,14 @@ class DatabaseConfig {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Allow properties to be overriden with global properties passed via JAVA_OPTS or similar
+        Set<String> sysProperties = System.getProperties().stringPropertyNames();
+        for (String key: sysProperties) {
+            if (key.startsWith("db.")) {
+                prop.setProperty(key, System.getProperty(key));
+            }
+        }
     }
 
     public final static String DRIVER_NAME = prop.getProperty("db.driver");
@@ -25,6 +34,9 @@ class DatabaseConfig {
     public final static String DB_NAME = prop.getProperty("db.name");
     public final static String DB_USER_NAME = prop.getProperty("db.username");
     public final static String DB_PASSWORD = prop.getProperty("db.password");
-    public final static String CONNECTION_STRING = DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
+
+    // Allow overriding the CONNECTION_STRING using the environment variable DB_URL
+    public final static String CONNECTION_STRING = 
+        System.getenv().containsKey("DB_URL") ? System.getenv("DB_URL") : (DB_HOST + ":" + DB_PORT + "/" + DB_NAME);
 
 }
