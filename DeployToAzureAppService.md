@@ -68,7 +68,7 @@ echo "Open your website at: https://$(az webapp config hostname list --resource-
 
 ### Configure the database connection properties
 
-In your Azure Portal account, look for your new web app and under Settings look for Configuration and the Environment variables section. Create a new App Setting with the name `JAVA_OPTS`and the following value, all in one line:
+In your Azure Portal account, look for your new web app and under Settings look for Configuration and the Environment variables section. Create a new App Setting with the name `JAVA_OPTS` and the following value, all in one line:
 
 ```
 -Ddb.host=jdbc:mysql://<MYSQL_HOST>.mysql.database.azure.com -Ddb.port=3306 -Ddb.name=onlinebookstore -Ddb.username=<MYSQL_ADMIN_USER> -Ddb.password=<MYSQL_ADMIN_PASSWORD>
