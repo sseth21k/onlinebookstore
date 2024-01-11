@@ -55,7 +55,7 @@ In a text editor open the file `setup/ExampleData.sql`. Copy the contents of the
 Run the following commands to create a new web application running Tomcat 9 with Java 11:
 
 ```powershell
-az appservice plan create --resource-group $RESOURCE_GROUP --name "${WEBAPP_NAME}-asp" --sku P1V3 --is-linux --location $LOCATION
+az appservice plan create --resource-group $RESOURCE_GROUP --name "${WEBAPP_NAME}-asp" --sku B1 --is-linux --location $LOCATION
 
 az webapp create --resource-group $RESOURCE_GROUP --name $WEBAPP_NAME --plan "${WEBAPP_NAME}-asp" --runtime "TOMCAT:9.0-java11"
 ```
