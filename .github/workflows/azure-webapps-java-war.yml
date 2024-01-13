@@ -75,6 +75,6 @@ jobs:
         with:
           # AZURE_WEBAPP_NAME needs to be created in the Github repo under Settings > Environments.
           # Create a new Environment, then create a new environment variable with the name 'AZURE_WEBAPP_NAME' and the webapp name as the value.
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          app-name: 'sseth-bookstore'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9EC00DC7DBF34D0AB32CEAD6633F7471 }}
           package: '*.war'
